@@ -102,9 +102,9 @@ IMPORTANT RULES:
 4. Do not calculate values that are not explicitly supported by the document.
 5. Preserve the supplier's actual information.
 6. If there are multiple products/items, return every item separately.
-7. Convert numeric values into numbers, not strings.
-8. Delivery must be represented in days.
-9. Warranty must be represented in years.
+7. Convert numeric values into numbers, not strings. Remove any currency symbols ($, €, ₹, etc.) and commas used as thousand separators (e.g. "$1,150.00" -> 1150, "$23,000.00" -> 23000, "55,000" -> 55000). NEVER omit or drop digits before commas.
+8. Delivery must be represented in days (e.g. 2 weeks -> 14, 1 month -> 30).
+9. Warranty must be represented in years (e.g. 6 months -> 0.5, 24 months -> 2).
 10. Payment terms should remain as text.
 11. Return only the requested JSON structure.
 12. Do not include explanations outside the JSON.
@@ -147,14 +147,16 @@ ${text}
 
     return parsedData;
   } catch (error) {
+    console.error("Gemini AI extraction error:", error?.message || error);
     if (error instanceof ApiError) {
       throw error;
     }
     throw new ApiError(
       502,
-      "Failed to extract quotation information using Gemini",
+      `Failed to extract quotation information using Gemini: ${error?.message || "Unknown error"}`,
     );
   }
 };
 
 export { extractQuotationInformation };
+

@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary-green: #16A34A;
+    --deep-green: #15803D;
+    --emerald: #10B981;
+    --light-mint: #ECFDF5;
+    --soft-green-bg: #F5FBF7;
+    --border-color: #E2EAE4;
+    --main-text: #17211B;
+    --secondary-text: #647067;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--soft-green-bg);
+    color: var(--main-text);
+  }
+}
+
+/* Custom styled scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5FBF7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C4D7CB;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #10B981;
+}
+
+/* Glass & Card subtle utilities */
+.card-base {
+  background-color: #FFFFFF;
+  border: 1px solid #E2EAE4;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(23, 33, 27, 0.04), 0 1px 2px -1px rgba(23, 33, 27, 0.04);
+  transition: all 0.2s ease-in-out;
+}
+
+.card-hover:hover {
+  box-shadow: 0 8px 16px -2px rgba(23, 33, 27, 0.06), 0 4px 6px -3px rgba(23, 33, 27, 0.03);
+  border-color: #D1FAE5;
+}
+
+/* Green gradient CTA */
+.btn-primary-gradient {
+  background: linear-gradient(135deg, #10B981 0%, #15803D 100%);
+  color: #FFFFFF;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary-gradient:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669 0%, #166534 100%);
+  box-shadow: 0 4px 12px -2px rgba(16, 185, 129, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-primary-gradient:active:not(:disabled) {
+  transform: translateY(0);
+}
