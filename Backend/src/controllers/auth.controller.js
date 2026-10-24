@@ -9,11 +9,16 @@ import {
 } from "../services/auth.service.js";
 
 // Cookie configuration for local development
+
+const isProduction = process.env.NODE_ENV === "production";
+
 const cookieOptions = {
   httpOnly: true,
-  secure: false,
-  sameSite: "lax",
+  secure: isProduction,
+  sameSite: isProduction ? "none" : "lax",
+  path: "/",
 };
+
 
 // ================= REGISTER =================
 
