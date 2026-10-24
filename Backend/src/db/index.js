@@ -1,9 +1,16 @@
 import Database from "better-sqlite3";
+import path from "node:path";
+import fs from "node:fs";
 
+const dbPath =
+  process.env.DB_PATH ||
+  path.join(process.cwd(), "src", "db", "database.sqlite");
 
-const db = new Database(
-  "src/db/database.sqlite"
-);
+fs.mkdirSync(path.dirname(dbPath), {
+  recursive: true,
+});
+
+const db = new Database(dbPath);
 
 
 db.pragma(
